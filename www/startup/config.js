@@ -3,13 +3,13 @@ define(function(){
     
     config.appName = "Startup Template";
     config.version = "0.1";
-    var tabs = [{name: "main", label: "Main"}, 
+    var tabs = [{name: "main", label: "Main", path: "main/controller"}, 
                    {name: "download", label:"Download"},
                    {name: "document", label:"Documents", 
                     sub:[{name: "start", label:"Quick Start"},
                          {name: "api", label:"APIs"}]}
                ];
-    var tabObject = function(name, title, parent, controller){
+    var tabObject = function(name, title, parent, path, view){
 	var  children = [];
 	Object.defineProperty(this, 'name', {
 	    get: function() {
@@ -26,14 +26,36 @@ define(function(){
     		return parent;
 	    }
 	});
-	Object.defineProperty(this, 'controller', {
+	Object.defineProperty(this, 'controllerPath', {
 	    get: function() {
-		return controller;
+		return path || this.state.split("-").join("/")+"/controller";
+	    }
+	});
+	Object.defineProperty(this, 'url', {
+	    get: function() {
+		return this.state.split("-").join("/");
 	    }
 	});
 	Object.defineProperty(this, 'children', {
 	    get: function() {
 		return children;
+	    }
+	});
+	
+	Object.defineProperty(this, 'state', {
+	    get: function() {
+		var state = name;
+		var up = parent;
+		while(up){
+		    state = up.name+'-'+state;
+		    up = up.parent;
+		}
+		return state;
+	    }
+	});
+	Object.defineProperty(this, 'view', {
+	    get: function() {
+		return view || this.state.split("-").join("/")+"/view.html";
 	    }
 	});
 	var addChild = function(child){
@@ -51,7 +73,7 @@ define(function(){
     var processTab = function(tabArray, parent){
 	var tabs = [];
 	for(var i in tabArray){
-	    var tab = new tabObject(tabArray[i].name, tabArray[i].label, parent, tabArray[i].controller||tabArray[i].name);
+	    var tab = new tabObject(tabArray[i].name, tabArray[i].label, parent, tabArray[i].path);
 	    tabs.push(tab);
 	    if(tabArray[i].sub && tabArray[i].sub.length>0){
 		var subs = processTab(tabArray[i].sub, tab);

@@ -6,12 +6,23 @@
 <script src="lib/require.js" data-main="main"></script>
 </head>
 <body>
-<div ng-controller="menubar'>
+<div ng-controller="menubar">
+{{title}}
+<ul>
+<li ng-repeat="tab in tabs">
+ <a ng-show="tab.children.length=='0'" ng-click="tabClicked(tab)">{{tab.title}}</a>
+ <span ng-show="tab.children.length>0">{{tab.title}}</span>
+ <ul ng-show="tab.children.length>0">
+ 	<li ng-repeat="child in tab.children">
+ 		<a ng-click="tabClicked(child)" >{{child.title}}</a>
+ 	</li>
+ </ul>
+</li>
+</ul>
 
-{{test}}
 
 </div>
 
-<div></div>
+<div ui-view></div>
 </body>
 </html>
