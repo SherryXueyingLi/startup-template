@@ -1,7 +1,7 @@
 *For those who just starting a trip on javascript but have no idea how to integrate popular libs like I was.*
 
 ## Prepare
-Run your service with either Jetty or nodeJs to test, Or test it out here[http://sherryxueyingli.github.io/startup-template/www/startup/index.html#/main], check the script load information in your develop console.
+Run your service with either Jetty or nodeJs to test, Or test it out [here](http://sherryxueyingli.github.io/startup-template/www/startup/index.html#/main), check the script load information in your develop console.
 
 ###TabConfig
 In _config.js_ file, 'tabs' defined the tab label, state name, and controller path, url will be set by default based on state name.
