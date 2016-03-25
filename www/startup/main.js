@@ -2,7 +2,8 @@ require.config({
     paths: {
 	"angular": "lib/angular.min",
 	"uiRouter": "lib/angular-ui-router",
-	"config": "config"
+	"config": "config",
+	"css": "lib/css",  
     },
     shim: {
         'angular': {
@@ -12,7 +13,7 @@ require.config({
     },
 });
 
-require(["config", "menubarController","angular","uiRouter"], function(config, menubarController, angular){
+require(["config", "menubarController","angular","uiRouter", "css!style/site.css",], function(config, menubarController, angular){
     // see Stack Overflow Q: 25168593
     var app = angular.module("startup", ['ui.router']);
    
@@ -41,30 +42,37 @@ require(["config", "menubarController","angular","uiRouter"], function(config, m
             url: "/"+tab.url,
             templateUrl: tab.view,
             data: {
+        	tab: tab,
         	name: tab.name,
         	state: tab.state,
         	path: tab.controllerPath
             },
             
             resolve: {
-                tabController: ['$q',function($q){
+                tabController: ['$state',function($state){
                     if(cache[this.data.state]) return;
                     var data = this.data;
-                    var deferred = $q.defer();
-                    require([this.data.path], function(ctrl){
-                	angular.module("startup").cp.register(data.state, ctrl);
-                	cache[data.state] = ctrl;
-                	deferred.resolve();
-            	    });
-                    return deferred.promise;
+                    return load(data).then(function(state){
+                	$("#"+state).click();
+                    });
                 }]
             },
             controller: tab.state
 	}
     };
     
+    function load(data){
+	var deferred = $.Deferred();
+	require([data.path], function(ctrl){
+	    angular.module("startup").cp.register(data.state, ctrl);
+	    cache[data.state] = data.state;
+	    deferred.resolve(data.state);
+        });
+        return deferred.promise();
+    }
+    
     //start angularjs manually. no 'ng-app' needed in html.
     angular.bootstrap(document, ["startup"]);
-    window.app = app;
+    
 });
 

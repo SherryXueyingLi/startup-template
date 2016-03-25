@@ -71,6 +71,7 @@ define(function(){
     };
     
     var processTab = function(tabArray, parent){
+	
 	var tabs = [];
 	for(var i in tabArray){
 	    var tab = new tabObject(tabArray[i].name, tabArray[i].label, parent, tabArray[i].path);
@@ -81,7 +82,21 @@ define(function(){
 	    }
 	}
 	return tabs;
-    }
-    config.tabs = processTab(tabs, null);
+    };
+    
+    var appendContext = function(element, tabs){
+	var _element = $(element);
+	$('<li class="firstLevelLi navBar" ng-repeat="tab in tabs" id="{{tab.state}}" ng-click="tabClicked(tab)">\
+		<span>{{tab.title}}</span>\
+		<ul  class="secondLevel">\
+		    <li class="secondLevelLi navBar" ng-repeat="child in tab.children" id="{{child.state}}" ng-click="tabClicked(child)"><span>{{child.title}}</span></li>\
+		</ul>\
+	   </li>').appendTo(_element);
+	
+    };
+    
+  
+    config.tabs = processTab( tabs, null);
+    appendContext($(".nav"), config.tabs);
     return config;
 });

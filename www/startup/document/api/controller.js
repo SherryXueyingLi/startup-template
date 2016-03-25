@@ -1,7 +1,7 @@
 define( function(){
     var controller = function($scope){
 	$scope.time = new Date();
-	$scope.page = "document";
+	$scope.title = "API";
     };
     //angular.module("startup").cp.register("document", controller);
     return controller;

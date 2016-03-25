@@ -1,6 +1,6 @@
 define( function(){
     var controller = function($scope){
-	$scope.currentpage = "download";
+	$scope.title = "Download Page";
     };
     return controller;
 });
