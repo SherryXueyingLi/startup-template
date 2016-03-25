@@ -24,12 +24,12 @@
 <h2>
 <a id="prepare" class="anchor" href="#prepare" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prepare</h2>
 
-<p>Run your service with either Jetty or nodeJs, to test routing</p>
+<p>Run your service with either Jetty or nodeJs to test, Or test it out <a href="http://sherryxueyingli.github.io/startup-template/www/startup/index.html#/main">here</a>, check the script load information in your develop console.</p>
 
 <h3>
 <a id="tabconfig" class="anchor" href="#tabconfig" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TabConfig</h3>
 
-<p>In <em>config.js</em> file, tabs defined the tab label, state name, and controller path, url is defaultly set.
+<p>In <em>config.js</em> file, 'tabs' defined the tab label, state name, and controller path, url will be set by default based on state name.
 Literally, it could support infinity sub-tabs.</p>
 
 <p>function <em>appendContext</em> help append elements based on angularJs. 
@@ -38,15 +38,16 @@ It could support two level's tabs. So any tab defined but lower then level two w
 <h3>
 <a id="routing" class="anchor" href="#routing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Routing</h3>
 
-<p>By using 'resolve', it help load the controller and trigger a click event after successfully loaded.
-If the controller have already loaded, just return, because we don't need to register a controller each time.</p>
+<p>By using 'resolve', it help load the controller module and use 'register' to inject the controller.
+Note: app.controller() wouldn't work after app.bootstrap.
+'Click' event must be triggered after successfully loaded.</p>
+
+<p>If the controller have already loaded, resolve function will return directly, because we don't need to load file and register this controller each time.</p>
 
 <h2>
-<a id="requirejsangularjsexample" class="anchor" href="#requirejsangularjsexample" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>requirejs+angularjs/example</h2>
+<a id="fyi" class="anchor" href="#fyi" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FYI</h2>
 
 <p>This project shows how to set up a requirejs+angularjs-based website, with a proper routing menu tab.</p>
-
-<p>Test it out <a href="http://sherryxueyingli.github.io/startup-template/www/startup/index.html#/main">here</a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/SherryXueyingLi/startup-template">Startup-template</a> is maintained by <a href="https://github.com/SherryXueyingLi">SherryXueyingLi</a>.</span>
