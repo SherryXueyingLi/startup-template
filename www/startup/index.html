@@ -6,15 +6,7 @@
 <script src="lib/require.js" data-main="main"></script>
 </head>
 <body>
-	<div ng-controller="menubar">
-		<ul class="nav firstLevel" >
-			<!-- <li ng-repeat="tab in tabs" id="{{tab.state}}" ng-click="tabClicked(tab">
-				<ul class="secondClass">
-					<li ng-repeat="child in tab.children" id="{{child.state}}" ng-click="tabClicked(child)"><span>{{child.title}}</span></li>
-				</ul>
-				<span>{{tab.title}}</span>
-			</li> -->
-		</ul>
+	<div class="nav" ng-controller="menubar">
 	</div>
 	<div class="board" ui-view></div>
 </body>
