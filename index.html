@@ -39,21 +39,14 @@ It could support two level's tabs. So any tab defined but lower then level two w
 <a id="routing" class="anchor" href="#routing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Routing</h3>
 
 <p>By using 'resolve', it help load the controller and trigger a click event after successfully loaded.
-If the controller have already loaded, just return, because we don't need to register a controller each time.
-<code>resolve: {
-                tabController: ['$state',function($state){
-                    if(cache[this.data.state]) return;
-                    var data = this.data;
-                    return load(data).then(function(state){
-                        $("#"+state).click();
-                    });
-                }]
-            },</code></p>
+If the controller have already loaded, just return, because we don't need to register a controller each time.</p>
 
 <h2>
 <a id="requirejsangularjsexample" class="anchor" href="#requirejsangularjsexample" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>requirejs+angularjs/example</h2>
 
 <p>This project shows how to set up a requirejs+angularjs-based website, with a proper routing menu tab.</p>
+
+<p>Test it out <a href="http://sherryxueyingli.github.io/startup-template/www/startup/index.html#/main">here</a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/SherryXueyingLi/startup-template">Startup-template</a> is maintained by <a href="https://github.com/SherryXueyingLi">SherryXueyingLi</a>.</span>
