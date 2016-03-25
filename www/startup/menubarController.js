@@ -14,6 +14,17 @@ define(["config"], function(config){
 	    }
 	    
 	};
+	
+	var tabHover = function(state){
+	    $("."+state).show();
+	};
+	
+	var tabLeave = function(state){
+	    $("."+state).toggle();
+	};
+	
+	$scope.tabHover = tabHover;
+	$scope.tabLeave = tabLeave;
 	$scope.tabClicked = tabClicked;
     };
     return menubarController;

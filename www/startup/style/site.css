@@ -31,13 +31,13 @@
 	color: #F3B27A;
 }
 
-.navBar>span:hover{
-	color: #F5C588;;
+.firstLevel{
+	margin: 0px;
+	height: 100%
 }
 
-li.firstLevelLi:hover ul.secondLevel{
-	display: inline; 
-	color: #F3B27A;;
+.navBar>span:hover{
+	color: #F5C588;;
 }
 
 /*
@@ -50,6 +50,9 @@ ul.secondLevel{
     background-color: black;
     padding: 0px;
     z-index: 999;
+}
+ul.secondLevel:hover{
+	display: block;
 }
 li.secondLevelLi{
 	display: block;

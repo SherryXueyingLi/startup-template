@@ -13,15 +13,7 @@ It could support two level's tabs. So any tab defined but lower then level two w
 ###Routing
 By using 'resolve', it help load the controller and trigger a click event after successfully loaded.
 If the controller have already loaded, just return, because we don't need to register a controller each time.
-`resolve: {
-                tabController: ['$state',function($state){
-                    if(cache[this.data.state]) return;
-                    var data = this.data;
-                    return load(data).then(function(state){
-                	    $("#"+state).click();
-                    });
-                }]
-            },`
+
 
 ## requirejs+angularjs/example
 This project shows how to set up a requirejs+angularjs-based website, with a proper routing menu tab.
