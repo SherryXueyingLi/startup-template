@@ -21,7 +21,7 @@ require(["config", "menubarController","angular","uiRouter", "css!style/site.css
 	app.cp = $controllerProvider;
 	app.$stateProvider = $stateProvider;
 	setStates(config.tabs, $stateProvider);
-	//$urlRouterProvider.when("", "/main");
+	$urlRouterProvider.when("", "/main");
     });
     
     app.controller('menubar', menubarController);
@@ -52,8 +52,9 @@ require(["config", "menubarController","angular","uiRouter", "css!style/site.css
                 tabController: ['$state',function($state){
                     if(cache[this.data.state]) return;
                     var data = this.data;
-                    return load(data).then(function(state){
-                	$("#"+state).click();
+                    return load(data).then(function(data){
+                	$("#"+data.state).click();
+//                	menubarController.tabClicked(data);
                     });
                 }]
             },
@@ -66,7 +67,7 @@ require(["config", "menubarController","angular","uiRouter", "css!style/site.css
 	require([data.path], function(ctrl){
 	    angular.module("startup").cp.register(data.state, ctrl);
 	    cache[data.state] = data.state;
-	    deferred.resolve(data.state);
+	    deferred.resolve(data);
         });
         return deferred.promise();
     }

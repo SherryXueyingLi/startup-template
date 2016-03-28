@@ -1,31 +1,34 @@
 define(["config"], function(config){
     var menubarController = function($scope, $state){
-	$scope.title = "Hello AngularJs and RequireJs";
-	$scope.tabs = config.tabs;
+	
 	var tabClicked = function(tab){
-	    if(tab.children.length>0) return;
+	    if(tab.children.length>0){
+		$("."+tab.state).toggle();
+		return;
+	    } 
 	    console.log("go to "+tab.state);
-	    $(".nav").find("li").removeClass("active");
-	    $("#"+tab.state).addClass("active");
+	    $("li.navBar").removeClass("active");
+	    $("#"+tab.state).parent().addClass("active");
 	    $state.go(tab.state);
 	    while(tab.parent){
-		$("#"+tab.parent.state).addClass("active");
+		$("#"+tab.parent.state).parent().addClass("active");
 		tab = tab.parent;
 	    }
-	    
 	};
 	
-	var tabHover = function(state){
-	    $("."+state).show();
-	};
-	
+	$scope.title = "Hello AngularJs and RequireJs";
+	$scope.tabs = config.tabs;
 	var tabLeave = function(state){
-	    $("."+state).toggle();
+	    $("."+state).hide();
 	};
 	
-	$scope.tabHover = tabHover;
 	$scope.tabLeave = tabLeave;
-	$scope.tabClicked = tabClicked;
+	
+	Object.defineProperty($scope, 'tabClicked', {
+	    get: function() {
+		return tabClicked;
+	    }
+	});
     };
     return menubarController;
 });

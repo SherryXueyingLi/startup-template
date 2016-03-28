@@ -87,10 +87,12 @@ define(function(){
     var appendContext = function(element, tabs){
 	var _element = $(element);
 	$('<ul class="firstLevel">\
-	   <li class="firstLevelLi navBar" ng-repeat="tab in tabs" id="{{tab.state}}" ng-click="tabClicked(tab)" ng-mouseover="tabHover(tab.state)" >\
-		<span>{{tab.title}}</span>\
+	   <li class="firstLevelLi navBar" ng-repeat="tab in tabs">\
+		<span ng-click="tabClicked(tab)"  id="{{tab.state}}">{{tab.title}}</span>\
 		<ul  class="secondLevel {{tab.state}}" ng-mouseleave="tabLeave(tab.state)">\
-		    <li class="secondLevelLi navBar" ng-repeat="child in tab.children" id="{{child.state}}" ng-click="tabClicked(child)"><span>{{child.title}}</span></li>\
+		    <li class="secondLevelLi navBar" ng-repeat="child in tab.children" >\
+			<span ng-click="tabClicked(child)" id="{{child.state}}" >{{child.title}}</span>\
+		    </li>\
 		</ul>\
 	   </li><ul>').appendTo(_element);
 	
