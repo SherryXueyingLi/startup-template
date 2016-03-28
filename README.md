@@ -19,6 +19,6 @@ If the controller have already loaded, resolve function will return directly, be
 
 
 ## FYI
-This project shows how to set up a requirejs+angularjs-based website, with a proper routing menu tab.
+This project shows how to set up a requirejs+angularjs-based lazy load website, with a proper routing menu tab.
 
 
